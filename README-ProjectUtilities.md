@@ -1,4 +1,4 @@
-# JDBC Utils
+# `src/main/java/.../utils/jdbc`
 
 ## How do I orient myself in these utilities?
 * `Database`
