@@ -31,7 +31,7 @@ public class PokemonTableDao {
         return get(databaseTable.limit(limit).getResultSet());
     }
 
-    public Pokemon findByid(long id) {
+    public Pokemon findById(long id) {
         ResultSetHandler rsh = databaseTable.where("ID = " + id);
         List<Pokemon> pokemons = get(rsh.getResultSet());
         return pokemons.get(0);

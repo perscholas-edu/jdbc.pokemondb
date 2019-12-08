@@ -2,8 +2,9 @@ package com.github.git_leon.pokemondatabase;
 
 import com.github.git_leon.pokemondatabase.model.Pokemon;
 import com.github.git_leon.utils.jdbc.database.Database;
+import com.github.git_leon.utils.jdbc.database.DatabaseInterface;
 import com.github.git_leon.utils.jdbc.database.DatabaseTable;
-import com.github.git_leon.utils.jdbc.database.DatabaseTableStatmentor;
+import com.github.git_leon.utils.jdbc.database.DatabaseTableStatementGenerator;
 import com.github.git_leon.utils.jdbc.executor.StatementExecutorInterface;
 
 /**
@@ -11,19 +12,19 @@ import com.github.git_leon.utils.jdbc.executor.StatementExecutorInterface;
  */
 public class MainApplication {
     public static void main(String[] args) {
-        Database database = Database.UAT;
+        DatabaseInterface database = Database.UAT;
         database.drop();
         database.create();
         database.use();
 
-        Pokemon pokemonToAddToDatabase = new Pokemon(1L, "Smeargle", 1, null);
+        Pokemon pokemonToAddToDatabase = new Pokemon(52L , "Pikachu", 9, null);
         Class<? extends Pokemon> classToPersist = pokemonToAddToDatabase.getClass();
-        DatabaseTableStatmentor databaseTableStatmentor = new DatabaseTableStatmentor(database, classToPersist);
+        DatabaseTableStatementGenerator statementGenerator = new DatabaseTableStatementGenerator(database, classToPersist);
         DatabaseTable table = database.getTable(classToPersist.getSimpleName());
 
         StatementExecutorInterface statementExecutor = database.getStatementExecutor();
-        String createStatement = databaseTableStatmentor.getCreateStatement();
-        String insertionStatement = databaseTableStatmentor.getInsertionStatement(pokemonToAddToDatabase);
+        String createStatement = statementGenerator.getCreateStatement();
+        String insertionStatement = statementGenerator.getInsertionStatement(pokemonToAddToDatabase);
         String insertionStatementHardCoded = "INSERT INTO UAT.pokemon (id, name, primaryType, secondaryType) VALUES (1, 'Smeargle', 1, null);";
 
         statementExecutor.executeAndCommit(createStatement);

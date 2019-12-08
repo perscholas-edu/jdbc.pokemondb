@@ -2,6 +2,7 @@ package com.github.git_leon.utils.jdbc.connection;
 
 import com.github.git_leon.collectionutils.MapCollection;
 import com.github.git_leon.utils.jdbc.database.Database;
+import com.github.git_leon.utils.jdbc.database.DatabaseInterface;
 import com.github.git_leon.utils.jdbc.database.DatabaseTable;
 import com.github.git_leon.utils.jdbc.executor.StatementExecutor;
 import com.github.git_leon.utils.jdbc.resultset.ResultSetHandler;
@@ -11,7 +12,7 @@ import org.junit.Test;
 
 public class StatementExecutorTest {
     private StatementExecutor executor;
-    private Database database;
+    private DatabaseInterface database;
 
     @Before
     public void setup() {

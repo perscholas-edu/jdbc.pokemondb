@@ -1,7 +1,7 @@
 package com.github.git_leon.utils.jdbc.database;
 
 
-import com.github.git_leon.utils.jdbc.connection.ConnectionBuilder;
+import com.github.git_leon.utils.jdbc.connection.ConnectionBuilderInterface;
 import com.github.git_leon.utils.jdbc.connection.ConnectionWrapper;
 import com.mysql.jdbc.Driver;
 import com.github.git_leon.utils.jdbc.executor.StatementExecutor;
@@ -83,7 +83,7 @@ public interface DatabaseInterface {
 
     String getName();
 
-    ConnectionBuilder getConnectionBuilder();
+    ConnectionBuilderInterface getConnectionBuilder();
 
     EntityManager getEntityManager();
 

@@ -1,6 +1,7 @@
 package com.github.git_leon.utils.jdbc.database;
 
 import com.github.git_leon.utils.jdbc.connection.ConnectionBuilder;
+import com.github.git_leon.utils.jdbc.connection.ConnectionBuilderInterface;
 import com.github.git_leon.utils.jdbc.connection.ConnectionWrapper;
 import com.github.git_leon.utils.jdbc.executor.StatementExecutor;
 
@@ -36,8 +37,8 @@ public enum Database implements DatabaseInterface {
 
     private final DatabaseImpl database;
 
-    Database(ConnectionBuilder connectionBuilder) {
-        this.database = new DatabaseImpl(connectionBuilder, name());
+    Database(ConnectionBuilderInterface connectionBuilderInterface) {
+        this.database = new DatabaseImpl(connectionBuilderInterface, name());
     }
 
     public synchronized Connection getConnection() {
@@ -50,7 +51,7 @@ public enum Database implements DatabaseInterface {
     }
 
     @Override
-    public ConnectionBuilder getConnectionBuilder() {
+    public ConnectionBuilderInterface getConnectionBuilder() {
         return database.getConnectionBuilder();
     }
 

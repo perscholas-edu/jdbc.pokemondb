@@ -55,6 +55,11 @@ public class StatementExecutor implements StatementExecutorInterface {
 
     @Override// Invoked upon garbage collection
     public void finalize() {
+        try {
+            super.finalize();
+        } catch (Throwable throwable) {
+            throw new Error(throwable);
+        }
         close();
     }
 

@@ -4,11 +4,11 @@ import com.github.git_leon.pokemondatabase.model.Pokemon;
 import com.github.git_leon.utils.jdbc.connection.ConnectionBuilder;
 import org.junit.Test;
 
-public class DatabaseTableStatmentorTest {
+public class DatabaseTableStatementGeneratorTest {
     @Test
     public void test1() {
         System.out.println(
-                new DatabaseTableStatmentor(new DatabaseImpl(new ConnectionBuilder()
+                new DatabaseTableStatementGenerator(new DatabaseImpl(new ConnectionBuilder()
                         .setUrl("jdbc:mysql://localhost/")
                         .setPort(42000)
                         .setDatabaseName("uat")

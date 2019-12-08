@@ -1,17 +1,16 @@
 package com.github.git_leon.utils.jdbc.database;
 
 import java.lang.reflect.Field;
-import java.util.*;
 
 /**
  * Created by leon on 3/13/18.
  * Responsible for introspecting a POJO and returning a respective Database creation statement
  */
-public class DatabaseTableStatmentor<PersistentType> {
+public class DatabaseTableStatementGenerator<PersistentType> {
     private final DatabaseInterface database;
     private final Class<PersistentType> persistentTypeClass;
 
-    public DatabaseTableStatmentor(DatabaseInterface database, Class<PersistentType> persistentTypeClass) {
+    public DatabaseTableStatementGenerator(DatabaseInterface database, Class<PersistentType> persistentTypeClass) {
         this.database = database;
         this.persistentTypeClass = persistentTypeClass;
     }

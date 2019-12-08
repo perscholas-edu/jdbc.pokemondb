@@ -1,6 +1,7 @@
 package com.github.git_leon.utils.jdbc.dbseed;
 
 import com.github.git_leon.utils.jdbc.database.Database;
+import com.github.git_leon.utils.jdbc.database.DatabaseInterface;
 import com.github.git_leon.utils.jdbc.database.DatabaseTable;
 import com.github.git_leon.utils.jdbc.resultset.ResultSetHandler;
 import org.junit.Before;
@@ -10,7 +11,7 @@ import java.sql.Connection;
 
 public class LeonDatabaseSeederTest {
     private LeonDatabaseSeeder seeder;
-    private Database database;
+    private DatabaseInterface database;
 
     @Before
     public void setup() {

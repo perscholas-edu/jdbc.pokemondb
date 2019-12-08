@@ -1,6 +1,6 @@
 package com.github.git_leon.utils.jdbc.database;
 
-import com.github.git_leon.utils.jdbc.connection.ConnectionBuilder;
+import com.github.git_leon.utils.jdbc.connection.ConnectionBuilderInterface;
 import com.github.git_leon.utils.jdbc.connection.ConnectionWrapper;
 import com.github.git_leon.utils.jdbc.executor.StatementExecutor;
 
@@ -18,24 +18,24 @@ public class DatabaseImpl implements DatabaseInterface {
 
     private final String name;
     private final EntityManager entityManager;
-    private final ConnectionBuilder connectionBuilder;
+    private final ConnectionBuilderInterface connectionBuilderInterface;
     private Connection connection;
 
-    public DatabaseImpl(ConnectionBuilder connectionBuilder, String name) {
-        Connection connection = connectionBuilder.build();
+    public DatabaseImpl(ConnectionBuilderInterface connectionBuilderInterface, String name) {
+        Connection connection = connectionBuilderInterface.build();
         EntityManagerFactory emf = Persistence.createEntityManagerFactory(name);
 
         this.name = name;
         this.entityManager = emf.createEntityManager();
         this.connection = connection;
-        this.connectionBuilder = connectionBuilder;
+        this.connectionBuilderInterface = connectionBuilderInterface;
     }
 
     @Override
     public synchronized Connection getConnection() {
         ConnectionWrapper connectionWrapper = new ConnectionWrapper(connection);
         if (connectionWrapper.isClosed()) {
-            this.connection = connectionBuilder.build();
+            this.connection = connectionBuilderInterface.build();
         }
         return connection;
     }
@@ -46,8 +46,8 @@ public class DatabaseImpl implements DatabaseInterface {
     }
 
     @Override
-    public ConnectionBuilder getConnectionBuilder() {
-        return connectionBuilder;
+    public ConnectionBuilderInterface getConnectionBuilder() {
+        return connectionBuilderInterface;
     }
 
     @Override
